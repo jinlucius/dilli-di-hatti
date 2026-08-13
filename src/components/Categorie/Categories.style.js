@@ -19,7 +19,7 @@ export const COLORS = {
 
 export const SIZING = {
   cardWidth: 90,
-  gap: 14,
+  gap: 0,
 };
 
 /* ------------------------------------------------------------------ */
@@ -41,7 +41,8 @@ const categoriesStyles = StyleSheet.create({
 
   /* LOGO */
   logoWrapper: {
-    width: 100,
+    width: 120,
+    height: 120,
     alignItems: 'center',
     justifyContent: 'center',
     paddingLeft: 12,
@@ -61,7 +62,7 @@ const categoriesStyles = StyleSheet.create({
 
   categoryWrapper: {
     width: 98,
-    marginRight: 22,
+    marginRight: 10,
     alignItems: 'center',
     paddingTop: 4,
     paddingBottom: 4,

@@ -91,7 +91,7 @@ const CategoryCard = React.memo(function CategoryCard({ item, isActive, onPress 
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
         hitSlop={8}
-        android_ripple={{ color: 'rgba(255,107,53,0.15)', borderless: true }}
+        // android_ripple={{ color: 'rgba(255,107,53,0.15)', borderless: true }}
         accessibilityRole="button"
         accessibilityState={{ selected: isActive }}
         accessibilityLabel={item.name}
@@ -179,17 +179,8 @@ export default function CategoriesSection({
     [snapInterval]
   );
 
-  return (
+return (
     <View style={categoriesStyles.categoryContainer}>
-      {/* Section logo — static, left-aligned, does not scroll */}
-      <View style={categoriesStyles.logoWrapper}>
-        <Image
-          source={require('../../../assets/Dilli di hatti.png')}
-          style={categoriesStyles.logo}
-          resizeMode="contain"
-        />
-      </View>
-
       <FlatList
         style={{ flex: 1 }}
         horizontal
@@ -206,6 +197,15 @@ export default function CategoriesSection({
         maxToRenderPerBatch={8}
         windowSize={5}
         removeClippedSubviews={false}
+        ListHeaderComponent={
+          <View style={categoriesStyles.logoWrapper}>
+            <Image
+              source={require('../../../assets/Dilli di hatti.png')}
+              style={categoriesStyles.logo}
+              resizeMode="contain"
+            />
+          </View>
+        }
       />
     </View>
   );

@@ -45,7 +45,7 @@ export default StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    bottom: 0,
+    bottom: 30,
     flex: 1,
     paddingBottom: 20,
     justifyContent: "flex-end", // content hamesha neeche chipka rahega
@@ -72,7 +72,7 @@ export default StyleSheet.create({
     fontSize: 12,
     fontWeight: "700",
     letterSpacing: 1.2,
-    marginBottom: 6,
+    marginBottom: 8,
   },
 
   title: {
