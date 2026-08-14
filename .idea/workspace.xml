@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4451134-7539-4b31-a5cb-b541682241e4" name="Changes" comment="" />
+    <list default="true" id="f4451134-7539-4b31-a5cb-b541682241e4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/components/Banner/banner.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Banner/banner.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header/Header.styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.styles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Heroheader.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Heroheader.jsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,6 +36,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",

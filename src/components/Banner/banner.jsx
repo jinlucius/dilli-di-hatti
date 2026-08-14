@@ -15,7 +15,7 @@ const SWIPE_THRESHOLD = SCREEN_WIDTH * 0.22; // itna drag karne pe hi banner cha
 
 const BANNERS = [
   {
-    image: require("../../../assets/banner 1.png"),
+    image: require("../../../assets/banner 1.1.png"),
     tagline: "AUTHENTIC. DELICIOUS. DELHI.",
     titleLine1: "Taste Delhi's",
     titleLine2: "Hidden Food Gems",
@@ -27,7 +27,7 @@ const BANNERS = [
     },
   },
   {
-    image: require("../../../assets/banner 2.png"),
+    image: require("../../../assets/banner 2.2.png"),
     tagline: "FRESH • FAST • AUTHENTIC",
     titleLine1: "Delhi's Underrated",
     titleLine2: "Food Gems",

@@ -23,8 +23,9 @@ export default StyleSheet.create({
   },
 
   logo: {
-    width: 100,
+    width: 70,
     height: 100,
+    top: -5,
   },
 
   location: {
@@ -77,6 +78,7 @@ export default StyleSheet.create({
     backgroundColor: "#fff",
     height: 50,
     borderRadius: 16,
+    top: 10,
     paddingHorizontal: 14,
 
     ...Platform.select({
@@ -119,12 +121,13 @@ export default StyleSheet.create({
     marginLeft: 12,
     alignItems: "center",
     justifyContent: "center",
+    top: 10,
   },
 
   switchLabel: {
     color: "#fff",
     fontSize: 11,
     fontWeight: "700",
-    top: 7,
+    top: 0,
   },
 });

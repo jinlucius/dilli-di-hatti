@@ -11,7 +11,7 @@ const Header = ({ city = "Delhi", onProfilePress, onLocationPress }) => {
     <View style={styles.fixedNav}>
       <View style={styles.upperNav}>
         <Image
-          source={require("../../../assets/Dilli di hatti.png")}
+          source={require("../../../assets/white_logo.png")}
           style={styles.logo}
           resizeMode="contain"
         />

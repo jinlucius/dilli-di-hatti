@@ -4,6 +4,7 @@ import Banner from "./Banner/banner";
 import Header from "./Header/Header";
 import CategoriesSection from "./Categorie/Categoriessection";
 import Foodsection from "./Foodsection/Foodsection";
+import Filter from "./Filter-bar/filter";
 
 const HeroHeader = ({ city = "Delhi", onProfilePress, onLocationPress }) => {
   return (
@@ -15,6 +16,8 @@ const HeroHeader = ({ city = "Delhi", onProfilePress, onLocationPress }) => {
         onLocationPress={onLocationPress}
       />
       <CategoriesSection />
+            <Filter />
+
       <Foodsection/>
     
     </View>
