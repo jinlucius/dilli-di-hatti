@@ -11,24 +11,25 @@ const COLORS = {
   white: '#FFFFFF',
 };
 
-const shadow = (elevation, opacity) => ({
-  ...Platform.select({
-    ios: {
-      shadowColor: '#000000',
-      shadowOffset: { width: 0, height: elevation / 2 },
-      shadowOpacity: opacity,
-      shadowRadius: elevation,
-    },
-    android: {
-      elevation,
-    },
-  }),
-});
+// const shadow = (elevation, opacity) => ({
+//   ...Platform.select({
+//     ios: {
+//       shadowColor: '#000000',
+//       shadowOffset: { width: 0, height: elevation / 2 },
+//       shadowOpacity: opacity,
+//       shadowRadius: elevation,
+//     },
+//     android: {
+//       elevation,
+//     },
+//   }),
+// });
 
 const styles = StyleSheet.create({
   filterSection: {
     paddingHorizontal: 16,
-    marginBottom: 14,
+    marginBottom: -15,
+    zIndex: 1, // ensure filter bar is above other content (e.g. FoodSection)
   },
 
   // ---- Row jo ab ScrollView ka contentContainerStyle hai ----
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginRight: 8,
     paddingHorizontal: 12,
-    ...shadow(3, 0.05),
+    // ...shadow(3, 0.05),
   },
 
   // ---- Sort box — content ke hisaab se apne aap grow/shrink karega ----
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginRight: 8,
     paddingHorizontal: 10,
-    ...shadow(3, 0.05),
+    // ...shadow(3, 0.05),
   },
 
   // Row ka aakhri box — right margin nahi chahiye
@@ -144,7 +145,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     paddingTop: 14,
     paddingBottom: 12,
-    ...shadow(8, 0.08),
+    // ...shadow(8, 0.08),
   },
 
   sectionTitle: {
@@ -177,13 +178,13 @@ const styles = StyleSheet.create({
     marginHorizontal: 4,
     marginBottom: 8,
     minHeight: 36,
-    ...shadow(1, 0.03),
+    // ...shadow(1, 0.03),
   },
 
   activeFilterOption: {
     backgroundColor: COLORS.orange,
     borderColor: COLORS.orange,
-    ...shadow(5, 0.18),
+    // ...shadow(5, 0.18),
   },
 
   filterOptionText: {

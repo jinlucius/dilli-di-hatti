@@ -6,8 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="f4451134-7539-4b31-a5cb-b541682241e4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Filter-bar/filter.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Filter-bar/filter.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Categorie/Categories.style.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Categorie/Categories.style.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Filter-bar/filter.style.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Filter-bar/filter.style.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Foodsection/Foodsection.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Foodsection/Foodsection.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Foodsection/Foodsection.style.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Foodsection/Foodsection.style.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

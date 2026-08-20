@@ -1,9 +1,8 @@
 import { StyleSheet, Platform } from 'react-native';
 
 /* ------------------------------------------------------------------ */
-/*  COLORS                                                              */
+/* COLORS */
 /* ------------------------------------------------------------------ */
-
 export const COLORS = {
   background: '#FFF8F3',
   cardBackground: '#FFFFFF',
@@ -16,9 +15,8 @@ export const COLORS = {
 };
 
 /* ------------------------------------------------------------------ */
-/*  STYLES                                                              */
+/* STYLES */
 /* ------------------------------------------------------------------ */
-
 const foodStyles = StyleSheet.create({
   sectionContainer: {
     backgroundColor: COLORS.background,
@@ -34,13 +32,11 @@ const foodStyles = StyleSheet.create({
     paddingHorizontal: 18,
     marginBottom: 14,
   },
-
   headerTitle: {
     fontSize: 18,
     fontWeight: '700',
     color: COLORS.textPrimary,
   },
-
   seeAllText: {
     fontSize: 13,
     fontWeight: '600',
@@ -59,17 +55,18 @@ const foodStyles = StyleSheet.create({
     marginRight: 16,
     borderRadius: 22,
     backgroundColor: COLORS.cardBackground,
+    borderWidth: 1,
+    borderColor: 'rgba(58,42,26,0.08)',
     ...Platform.select({
       ios: {
         shadowColor: COLORS.shadowNeutral,
-        shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.1,
-        shadowRadius: 14,
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.06,
+        shadowRadius: 4,
       },
-      android: { elevation: 4 },
+      android: { elevation: 0 },
     }),
   },
-
   card: {
     borderRadius: 22,
     backgroundColor: COLORS.cardBackground,
@@ -82,14 +79,12 @@ const foodStyles = StyleSheet.create({
     height: 130,
     position: 'relative',
   },
-
   foodImage: {
     width: '100%',
     height: '100%',
     borderTopLeftRadius: 22,
     borderTopRightRadius: 22,
   },
-
   /* Fallback shown when no real image asset is available yet */
   foodImagePlaceholder: {
     width: '100%',
@@ -101,14 +96,12 @@ const foodStyles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 12,
   },
-
   foodImagePlaceholderText: {
     fontSize: 13,
     fontWeight: '600',
     color: COLORS.textSecondary,
     textAlign: 'center',
   },
-
   favouriteButton: {
     position: 'absolute',
     top: 10,
@@ -129,16 +122,13 @@ const foodStyles = StyleSheet.create({
       android: { elevation: 3 },
     }),
   },
-
   favouriteIcon: {
     fontSize: 16,
     color: COLORS.textSecondary,
   },
-
   favouriteIconActive: {
     color: COLORS.orange,
   },
-
   vegBadge: {
     position: 'absolute',
     top: 10,
@@ -151,7 +141,6 @@ const foodStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-
   vegBadgeDot: {
     width: 8,
     height: 8,
@@ -164,7 +153,6 @@ const foodStyles = StyleSheet.create({
     paddingTop: 12,
     paddingBottom: 14,
   },
-
   foodName: {
     fontSize: 15,
     fontWeight: '700',
@@ -172,22 +160,17 @@ const foodStyles = StyleSheet.create({
     marginBottom: 6,
   },
 
-  metaRow: {
+  /* ORDER COUNT ROW (new) — sits right under the food name, above rating */
+  orderRow: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 10,
   },
-
-  ratingText: {
-    fontSize: 13,
-    fontWeight: '600',
-    color: COLORS.textPrimary,
-  },
-
-  reviewText: {
+  orderText: {
     fontSize: 12,
-    fontWeight: '400',
+    fontWeight: '500',
     color: COLORS.textSecondary,
+    marginLeft: 5,
   },
 
   bottomRow: {
@@ -195,27 +178,23 @@ const foodStyles = StyleSheet.create({
     alignItems: 'flex-end',
     justifyContent: 'space-between',
   },
-
   priceText: {
     fontSize: 15,
     fontWeight: '700',
     color: COLORS.textPrimary,
   },
-
   deliveryText: {
     fontSize: 12,
     fontWeight: '500',
     color: COLORS.textSecondary,
     marginTop: 2,
   },
-
   addButton: {
     backgroundColor: COLORS.orange,
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 14,
   },
-
   addButtonText: {
     fontSize: 13,
     fontWeight: '700',

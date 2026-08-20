@@ -49,9 +49,10 @@ const categoriesStyles = StyleSheet.create({
     paddingRight: 12,
   },
   logo: {
-    width: 200,
-    height: 100,
-  },
+  width: 200,
+  height: 100,
+  resizeMode: 'contain',
+},
 
   /* LIST */
   categoryList: {
