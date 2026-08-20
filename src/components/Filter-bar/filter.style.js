@@ -26,72 +26,112 @@ const shadow = (elevation, opacity) => ({
 });
 
 const styles = StyleSheet.create({
-  // Wrapper for the whole filter+sort feature
   filterSection: {
     paddingHorizontal: 16,
     marginBottom: 14,
   },
 
-  // ---- Compact main bar ----
-  filterBar: {
-    height: 50,
+  // ---- Row jo ab ScrollView ka contentContainerStyle hai ----
+  topRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingRight: 16,
+  },
+
+  // ---- Filter / Veg / Non-Veg — fixed content-width (flex:1 hata diya, ScrollView me kaam nahi karta) ----
+  rowBox: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 40,
     backgroundColor: COLORS.white,
-    borderRadius: 15,
     borderWidth: 1,
     borderColor: COLORS.border,
+    borderRadius: 10,
+    marginRight: 8,
+    paddingHorizontal: 12,
+    ...shadow(3, 0.05),
+  },
+
+  // ---- Sort box — content ke hisaab se apne aap grow/shrink karega ----
+  sortBox: {
+    flexGrow: 0,
+    flexShrink: 0,
+    flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 14,
-    ...shadow(6, 0.06),
+    height: 40,
+    backgroundColor: COLORS.white,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+    borderRadius: 10,
+    marginRight: 8,
+    paddingHorizontal: 10,
+    ...shadow(3, 0.05),
   },
 
-  filterBarContent: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+  // Row ka aakhri box — right margin nahi chahiye
+  lastBox: {
+    marginRight: 0,
   },
 
-  filterBarLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
+  rowBoxIcon: {
+    marginRight: 4,
   },
 
-  filterIcon: {
-    marginRight: 6,
+  rowBoxChevron: {
+    marginLeft: 2,
   },
 
-  filterText: {
-    fontSize: 14,
+  rowBoxText: {
+    fontSize: 12.5,
     fontWeight: '700',
     color: COLORS.dark,
-    letterSpacing: 0.1,
   },
 
-  divider: {
-    width: 1,
-    height: 20,
-    backgroundColor: COLORS.border,
-    marginHorizontal: 12,
-  },
-
-  filterBarMiddle: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-
-  sortIcon: {
+  dot: {
+    width: 7,
+    height: 7,
+    borderRadius: 3.5,
     marginRight: 5,
   },
 
-  sortText: {
-    fontSize: 13.5,
-    fontWeight: '600',
-    color: COLORS.dark,
-    flexShrink: 1,
+  // ---- Veg active ----
+  vegBoxActive: {
+    backgroundColor: 'rgba(15, 138, 15, 0.08)',
+    borderColor: '#0F8A0F',
   },
 
-  chevron: {
-    marginLeft: 8,
+  vegBoxActiveText: {
+    color: '#0F8A0F',
+  },
+
+  // ---- Non-Veg active ----
+  nonVegBoxActive: {
+    backgroundColor: 'rgba(184, 34, 30, 0.08)',
+    borderColor: '#B8221E',
+  },
+
+  nonVegBoxActiveText: {
+    color: '#B8221E',
+  },
+
+  // ---- Selected count badge (Filter box ke andar) ----
+  countBadge: {
+    marginLeft: 4,
+    minWidth: 15,
+    height: 15,
+    borderRadius: 7.5,
+    backgroundColor: COLORS.orange,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 3,
+  },
+
+  countBadgeText: {
+    fontSize: 9,
+    fontWeight: '700',
+    color: COLORS.white,
   },
 
   // ---- Expandable panel ----
@@ -117,7 +157,7 @@ const styles = StyleSheet.create({
     letterSpacing: 0.4,
   },
 
-  // ---- Option chips ----
+  // ---- Option chips (panel ke andar) ----
   optionsContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -163,11 +203,6 @@ const styles = StyleSheet.create({
 
   checkIcon: {
     marginLeft: 5,
-  },
-
-  // ---- Dilli Di Hatti Special section ----
-  specialSection: {
-    marginTop: 4,
   },
 
   specialOption: {

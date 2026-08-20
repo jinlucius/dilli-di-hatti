@@ -7,16 +7,13 @@ import {
   LayoutAnimation,
   Platform,
   UIManager,
+  ScrollView,
 } from 'react-native';
 
-// Uses whichever icon library is already installed in the project.
-// Expo projects:        import { MaterialIcons } from '@expo/vector-icons';
-// Bare RN CLI projects: import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import styles from './filter.style';
 
-// Enable smooth LayoutAnimation on Android
 if (
   Platform.OS === 'android' &&
   UIManager.setLayoutAnimationEnabledExperimental
@@ -24,7 +21,6 @@ if (
   UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 
-// ---- Reusable filter option data (no repeated JSX) ----
 const sortOptions = [
   { id: 'first', label: 'First', icon: 'flash-on' },
   { id: 'newest', label: 'Newest', icon: 'new-releases' },
@@ -41,11 +37,12 @@ const specialOptions = [
   { id: 'popularNearYou', label: 'Popular Near You', icon: 'local-fire-department' },
 ];
 
-const allOptions = [...sortOptions, ...specialOptions];
-
 const FilterSortSection = () => {
   const [showFilters, setShowFilters] = useState(false);
-  const [selectedFilter, setSelectedFilter] = useState('loved'); // default: Most Loved
+  const [selectedFilters, setSelectedFilters] = useState(new Set(['loved']));
+
+  const [isVegActive, setIsVegActive] = useState(false);
+  const [isNonVegActive, setIsNonVegActive] = useState(false);
 
   const rotateAnim = useRef(new Animated.Value(0)).current;
   const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -54,7 +51,6 @@ const FilterSortSection = () => {
   const toggleFilter = () => {
     const opening = !showFilters;
 
-    // Smooth height/expansion transition for the panel mount/unmount
     LayoutAnimation.configureNext(
       LayoutAnimation.create(
         240,
@@ -63,14 +59,12 @@ const FilterSortSection = () => {
       )
     );
 
-    // Chevron rotation: ⌄ -> ⌃
     Animated.timing(rotateAnim, {
       toValue: opening ? 1 : 0,
       duration: 220,
       useNativeDriver: true,
     }).start();
 
-    // Fade + slight slide down for the panel content
     Animated.timing(fadeAnim, {
       toValue: opening ? 1 : 0,
       duration: opening ? 260 : 160,
@@ -87,8 +81,25 @@ const FilterSortSection = () => {
   };
 
   const handleSelect = (option) => {
-    setSelectedFilter(option.id);
-    // Panel stays open after selection
+    setSelectedFilters((prev) => {
+      const next = new Set(prev);
+      if (next.has(option.id)) {
+        next.delete(option.id);
+      } else {
+        next.add(option.id);
+      }
+      return next;
+    });
+  };
+
+  const handleVegPress = () => {
+    setIsVegActive((prev) => !prev);
+    setIsNonVegActive(false);
+  };
+
+  const handleNonVegPress = () => {
+    setIsNonVegActive((prev) => !prev);
+    setIsVegActive(false);
   };
 
   const chevronRotation = rotateAnim.interpolate({
@@ -96,11 +107,17 @@ const FilterSortSection = () => {
     outputRange: ['0deg', '180deg'],
   });
 
-  const activeOption = allOptions.find((opt) => opt.id === selectedFilter);
-  const barLabel = activeOption ? activeOption.label : 'Sort';
+  const selectedCount = selectedFilters.size;
+
+  const sortLabel =
+    selectedCount === 0
+      ? 'Sort'
+      : selectedCount === 1
+      ? sortOptions.concat(specialOptions).find((o) => selectedFilters.has(o.id))?.label
+      : `${selectedCount} selected`;
 
   const renderOption = (option) => {
-    const isActive = selectedFilter === option.id;
+    const isActive = selectedFilters.has(option.id);
     const isSpecial = !!option.isSpecial;
 
     return (
@@ -132,12 +149,7 @@ const FilterSortSection = () => {
           {option.label}
         </Text>
         {isActive && (
-          <MaterialIcons
-            name="check"
-            size={13}
-            color="#FFFFFF"
-            style={styles.checkIcon}
-          />
+          <MaterialIcons name="check" size={13} color="#FFFFFF" style={styles.checkIcon} />
         )}
       </TouchableOpacity>
     );
@@ -145,53 +157,80 @@ const FilterSortSection = () => {
 
   return (
     <View style={styles.filterSection}>
-      {/* ---- Compact filter bar ---- */}
-      <TouchableOpacity
-        style={styles.filterBar}
-        onPress={toggleFilter}
-        activeOpacity={0.85}
+      {/* ---- Filter | Sort | Veg | Non-Veg — ab horizontal scroll ---- */}
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.topRow}
       >
-        <View style={styles.filterBarContent}>
-          <View style={styles.filterBarLeft}>
-            <MaterialIcons name="tune" size={18} color="#FF6B00" style={styles.filterIcon} />
-            <Text style={styles.filterText}>Filter</Text>
-          </View>
+        {/* ---- Filter box ---- */}
+        <TouchableOpacity
+          style={styles.rowBox}
+          onPress={toggleFilter}
+          activeOpacity={0.75}
+        >
+          <MaterialIcons name="tune" size={16} color="#171717" style={styles.rowBoxIcon} />
+          <Text style={styles.rowBoxText}>Filter</Text>
+          {selectedCount > 0 && (
+            <View style={styles.countBadge}>
+              <Text style={styles.countBadgeText}>{selectedCount}</Text>
+            </View>
+          )}
+        </TouchableOpacity>
 
-          <View style={styles.divider} />
-
-          <View style={styles.filterBarMiddle}>
-            <MaterialIcons name="swap-vert" size={16} color="#171717" style={styles.sortIcon} />
-            <Text style={styles.sortText} numberOfLines={1}>
-              {barLabel}
-            </Text>
-          </View>
-
+        {/* ---- Sort box ---- */}
+        <TouchableOpacity
+          style={styles.sortBox}
+          onPress={toggleFilter}
+          activeOpacity={0.75}
+        >
+          <MaterialIcons name="swap-vert" size={16} color="#171717" style={styles.rowBoxIcon} />
+          <Text style={styles.rowBoxText}>
+            {sortLabel}
+          </Text>
           <Animated.View style={{ transform: [{ rotate: chevronRotation }] }}>
-            <MaterialIcons name="expand-more" size={20} color="#171717" style={styles.chevron} />
+            <MaterialIcons name="expand-more" size={16} color="#171717" style={styles.rowBoxChevron} />
           </Animated.View>
-        </View>
-      </TouchableOpacity>
+        </TouchableOpacity>
+
+        {/* ---- Veg box ---- */}
+        <TouchableOpacity
+          style={[styles.rowBox, isVegActive && styles.vegBoxActive]}
+          onPress={handleVegPress}
+          activeOpacity={0.75}
+        >
+          <View style={[styles.dot, { backgroundColor: '#0F8A0F' }]} />
+          <Text style={[styles.rowBoxText, isVegActive && styles.vegBoxActiveText]}>
+            Veg
+          </Text>
+        </TouchableOpacity>
+
+        {/* ---- Non-Veg box ---- */}
+        <TouchableOpacity
+          style={[styles.rowBox, styles.lastBox, isNonVegActive && styles.nonVegBoxActive]}
+          onPress={handleNonVegPress}
+          activeOpacity={0.75}
+        >
+          <View style={[styles.dot, { backgroundColor: '#B8221E' }]} />
+          <Text style={[styles.rowBoxText, isNonVegActive && styles.nonVegBoxActiveText]}>
+            Non-Veg
+          </Text>
+        </TouchableOpacity>
+      </ScrollView>
 
       {/* ---- Expandable filter panel ---- */}
       {showFilters && (
         <Animated.View
           style={[
             styles.filterPanel,
-            {
-              opacity: fadeAnim,
-              transform: [{ translateY: slideAnim }],
-            },
+            { opacity: fadeAnim, transform: [{ translateY: slideAnim }] },
           ]}
         >
           <Text style={styles.sectionTitle}>Sort By</Text>
-          <View style={styles.optionsContainer}>
-            {sortOptions.map(renderOption)}
-          </View>
+          <View style={styles.optionsContainer}>{sortOptions.map(renderOption)}</View>
 
           <Text style={styles.sectionTitle}>Dilli Di Hatti Special</Text>
-          <View style={styles.optionsContainer}>
-            {specialOptions.map(renderOption)}
-          </View>
+          <View style={styles.optionsContainer}>{specialOptions.map(renderOption)}</View>
         </Animated.View>
       )}
     </View>
